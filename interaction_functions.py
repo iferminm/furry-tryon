@@ -1,7 +1,6 @@
 # coding=utf-8
 from __future__ import unicode_literals
 
-from django.core.urlresolvers import reverse
 from django.utils import simplejson
 from django.conf import settings
 from django.utils.translation import ugettext as _
