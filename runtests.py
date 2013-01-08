@@ -22,4 +22,4 @@ if __name__ == '__main__':
     if len(argv) == 1:
         run_tests()
     else:
-        run_tests(argv[1])
+        run_tests(test_directory=argv[1])
