@@ -1,6 +1,11 @@
 #coding=utf-8
-from __future__ import unicode_literals
 
+## #############################################################
+## Unnamed Social Lib
+## Testing module
+## Coded by: Israel Fermín Montilla <ferminster@gmail.com>
+## Caracas - Venezuela (2013)
+## #############################################################
 
 gmail_urls = {
     'get_access_token': 'https://accounts.google.com/o/oauth2/token',
