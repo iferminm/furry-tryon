@@ -6,6 +6,8 @@
 ## Coded by: Israel Fermín Montilla <ferminster@gmail.com>
 ## Caracas - Venezuela (2012)
 ## #############################################################
+import settings
+import simplejson
 import urls
 import scopes
 
