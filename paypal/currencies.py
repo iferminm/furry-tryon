@@ -35,13 +35,13 @@ CURRENCIES_INFO= {
 ALL_CURRENCIES = CURRENCIES_INFO.keys()
 
 # All currencies generally supported
-GENERAL_SUPPORTED = {k: v for k, v in CURRENCIES_INFO if not v['only_in_country']}
+GENERAL_SUPPORTED = {k: CURRENCIES_INFO[k] for k in CURRENCIES_INFO if not CURRENCIES_INFO[k]['only_in_country']}
 
 # All currencies generally supported (only codes)
 GENERAL_SUPORTED_CURRENCIES = GENERAL_SUPPORTED.keys()
 
 # Currencies supported by Express Checkout and Direct Payment
-EXPRESS_CHECKOUT = {k: v for k, v in CURRENCIES_INFO if v['express_checkout']}
+EXPRESS_CHECKOUT = {k: CURRENCIES_INFO[k] for k in CURRENCIES_INFO if CURRENCIES_INFO[k]['express_checkout']}
 
 # Currencies supported by Express Checkout and Direct Payment (only codes)
 EXPRESS_CHECKOUT_CURRENCIES = EXPRESS_CHECKOUT.keys()
