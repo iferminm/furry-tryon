@@ -47,7 +47,7 @@ class PayPalConnection(object):
             'METHOD': 'SetExpressCheckout'
         }
 
-        response = urllib2.urlopen(urls['endpoint'], urllib.urlencode(post_data))
+        response = urllib2.urlopen(self.urls['endpoint'], urllib.urlencode(post_data))
         content = [tuple(v.split('=')) for v in urllib.unquote(response.read()).split('&')]
         content = {k.lower(): v for k, v in content}
 
@@ -58,5 +58,5 @@ class PayPalConnection(object):
         returns a token-signed url to ask permission
         to use his paypal account
         """
-        return self.urls % {'command': 'express-checkout', 'token': token}
+        return self.urls['authorization'] % {'command': 'express-checkout', 'token': token}
 
