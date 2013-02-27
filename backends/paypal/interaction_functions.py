@@ -31,7 +31,7 @@ def request_token(user, password, signature, return_url, cancel_url, test=False)
         'CANCELURL': cancel_url,
         'METHOD': 'SetExpressCheckout'
     }
-    
+
     response = urllib2.urlopen(urls['endpoint'], urllib.urlencode(post_data))
     content = [tuple(v.split('=')) for v in urllib.unquote(response.read()).split('&')]
     content = {k.lower(): v for k, v in content}
