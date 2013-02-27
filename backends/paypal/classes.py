@@ -60,3 +60,22 @@ class PayPalConnection(object):
         """
         return self.urls['authorization'] % {'command': 'express-checkout', 'token': token}
 
+    def get_buyer_info(self, token):
+        """
+        Retrieves the buyer's info and returns it in a 
+        Python Dict
+
+        token: the token the API gave you in the first 
+            step of the cycle
+
+        returns: a python dictionary with the buyer's information
+        """
+        post_data = {
+            'TOKEN': token
+        }
+
+        response = urllib2.urlopen(self.urls['endpoint'], urllib.urlencode(post_data))
+        content = response.read()
+        print content
+        import pdb;pdb.set_trace()
+        return content
