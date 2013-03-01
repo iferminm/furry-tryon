@@ -6,10 +6,10 @@ from backends.gmail import GmailConnection
 from backends.paypal import PayPalConnection
 
 __connections = {
-    'gmail': GmailConnection(),
+    'gmail': GmailConnection,
 #    'facebook': FacebookConnection(),
 #    'twitter': TwitterConnection(),
-    'paypal': PayPalConnection()
+    'paypal': PayPalConnection
 }
 
 def connect_with(which):
