@@ -1,9 +1,9 @@
 #coding=utf-8
 from __future__ import unicode_literals
+from urls import testing_urls, checkout_urls
 import simplejson
 import urllib
 import urllib2
-import urls
 
 
 class GoogleCheckoutConnection(object):
@@ -12,4 +12,5 @@ class GoogleCheckoutConnection(object):
     google checkout service
     """
     def __init__(self, merchant_id, test=False):
-        pass 
+        self.urls = testing_urls if testing else checkout urls
+
