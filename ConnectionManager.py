@@ -2,11 +2,11 @@
 from __future__ import unicode_literals
 #from backends.facebook import FacebookConnection
 #from backends.twitter import TwitterConnection
-from backends.gmail import GmailConnection
-from backends.paypal import PayPalConnection
+#from backends.gmail import GmailConnection
+from backends.paypal.classes import PayPalConnection
 
 __connections = {
-    'gmail': GmailConnection,
+#    'gmail': GmailConnection,
 #    'facebook': FacebookConnection(),
 #    'twitter': TwitterConnection(),
     'paypal': PayPalConnection

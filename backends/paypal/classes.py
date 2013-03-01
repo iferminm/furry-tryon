@@ -31,7 +31,7 @@ class PayPalConnection(object):
         """
         docstring for __parse_special
         """
-        
+        pass        
 
     def request_token(self, return_url, cancel_url, payment_data, company_name=None):
         """
