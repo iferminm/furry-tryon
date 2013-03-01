@@ -7,6 +7,7 @@ import urllib
 import urllib2
 import simplejson
 
+
 class PayPalConnection(object):
     """
     This class manages the interaction with paypal API
@@ -25,7 +26,13 @@ class PayPalConnection(object):
         self.api_passwd = passwd
         self.api_signature = signature
 
-    def request_token(self, return_url, cancel_url, payment_data):
+    def __parse_special(self, content):
+        """
+        docstring for __parse_special
+        """
+        
+
+    def request_token(self, return_url, cancel_url, payment_data, company_name=None):
         """
         This function requests an access token to PayPal API
         so we can proceed with the payment process.
@@ -45,10 +52,13 @@ class PayPalConnection(object):
             'VERSION': '84.0',
             'PAYMENTREQUEST_0_PAYMENTACTION': 'Sale',
             'PAYMENTREQUEST_0_AMT': payment_data['amount'],
+            'PAYMENTREQUEST_0_ITEMAMT': payment_data['amount'],
             'PAYMENTREQUEST_0_CURRENCYCODE': payment_data.get('currency_code', False) or 'USD',
+            'L_PAYMENTREQUEST_0_NAME': payment_data.get('product_name', False) or 'Various Products',
             'RETURNURL': return_url,
             'CANCELURL': cancel_url,
-            'METHOD': 'SetExpressCheckout'
+            'METHOD': 'SetExpressCheckout',
+            'BRANDNAME': company_name or ''
         }
 
         response = urllib2.urlopen(self.urls['endpoint'], urllib.urlencode(post_data))
@@ -120,16 +130,16 @@ class PayPalConnection(object):
             'USER': self.api_username,
             'PWD': self.api_passwd,
             'SIGNATURE': self.api_signature,
-            'METHOD': 'DoExpressCheckout',
+            'METHOD': 'DoExpressCheckoutPayment',
             'VERSION': '84.0',
             'TOKEN': token,
             'PAYERID': payer_id,
-            'PAYMENTREQUEST_0_PAYMENTACTION': 'Authorization',
             'PAYMENTREQUEST_0_AMT': payment_data['amount'],
             'PAYMENTREQUEST_0_CURRENCYCODE': payment_data.get('currency_code', False) or 'USD'
         }
 
         response = urllib2.urlopen(self.urls['endpoint'], urllib.urlencode(post_data))
+        content = self.__parse_special()
         content = [tuple(v.split('=')) for v in urllib.unquote(response.read()).split('&')]
         content = {k.lower(): v for k, v in content}
 
