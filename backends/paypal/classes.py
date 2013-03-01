@@ -8,6 +8,7 @@ import urllib2
 import simplejson
 
 
+#TODO: Refine the keys to make them more intuitive
 class PayPalConnection(object):
     """
     This class manages the interaction with paypal API
@@ -139,7 +140,6 @@ class PayPalConnection(object):
         }
 
         response = urllib2.urlopen(self.urls['endpoint'], urllib.urlencode(post_data))
-        content = self.__parse_special()
         content = [tuple(v.split('=')) for v in urllib.unquote(response.read()).split('&')]
         content = {k.lower(): v for k, v in content}
 
